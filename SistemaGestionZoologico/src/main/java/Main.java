@@ -6,6 +6,8 @@ import interaccionvisitantes.Quiosco;
 import administracionrecursos.Recurso;
 import administracionrecursos.Alimento;
 import administracionrecursos.Medicina;
+import administracionrecursos.Empleado;
+import interaccionvisitantes.Ventas;
 import mantenimientoseguridad.Mantenimiento;
 import mantenimientoseguridad.Seguridad;
 
@@ -52,6 +54,21 @@ public class Main {
 
         alimento.gestionar();
         medicina.gestionar();
+
+        // Gestión de empleados
+        Empleado veterinario = new Empleado("Juan", "Veterinario", 2000);
+        Empleado jardinero = new Empleado("Pedro", "Jardinero", 1500);
+
+        veterinario.realizarTarea("revisión de salud");
+        jardinero.realizarTarea("podar árboles");
+
+        veterinario.recibirPago();
+        jardinero.recibirPago();
+
+        // Ventas y entradas
+        Ventas ventas = new Ventas();
+        ventas.venderEntrada(20);
+        ventas.ofrecerSouvenirs();
 
         // Mantenimiento y Seguridad
         Mantenimiento mantenimiento = new Mantenimiento();
