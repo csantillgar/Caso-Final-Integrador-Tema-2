@@ -3,6 +3,8 @@ package gestionhabitat;
 import interaccionvisitantes.InterfazVisitante;
 import interaccionvisitantes.TourVirtual;
 import interaccionvisitantes.Quiosco;
+import interaccionvisitantes.Exhibicion;
+import interaccionvisitantes.Ticket;
 import administracionrecursos.Recurso;
 import administracionrecursos.Alimento;
 import administracionrecursos.Medicina;
@@ -10,6 +12,10 @@ import administracionrecursos.Empleado;
 import interaccionvisitantes.Ventas;
 import mantenimientoseguridad.Mantenimiento;
 import mantenimientoseguridad.Seguridad;
+import cuidadoanimales.Comida;
+
+
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
@@ -38,6 +44,7 @@ public class Main {
         aguila.alimentar();
         aguila.salud();
         aguila.comportamiento();
+
         // Interacción con visitantes
         InterfazVisitante tourVirtual = new TourVirtual();
         InterfazVisitante quiosco = new Quiosco();
@@ -47,6 +54,15 @@ public class Main {
 
         quiosco.proporcionarInformacion();
         quiosco.ofrecerTour();
+
+        // Exhibiciones y entradas
+        Exhibicion espectaculoLeones = new Exhibicion("Espectáculo de Leones", "Increíbles acrobacias de leones.");
+        espectaculoLeones.mostrarInformacion();
+        espectaculoLeones.iniciarExhibicion();
+        espectaculoLeones.finalizarExhibicion();
+
+        Ticket ticket = new Ticket(123456, new Date(), 25.0);
+        ticket.mostrarDetalles();
 
         // Administración de recursos
         Recurso alimento = new Alimento("Carne", 100);
@@ -79,6 +95,11 @@ public class Main {
 
         seguridad.monitorearAccesos();
         seguridad.monitorearMovimientos();
+
+        // Cuidado de animales
+        Comida comida = new Comida("Carne", "Carnívoro");
+        comida.preparar();
+        comida.servir();
     }
 }
 
