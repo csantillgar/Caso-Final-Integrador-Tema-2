@@ -1,4 +1,6 @@
 package interaccionvisitantes;
 
-public class InterfazVisitante {
+public interface InterfazVisitante {
+    void proporcionarInformacion();
+    void ofrecerTour();
 }
