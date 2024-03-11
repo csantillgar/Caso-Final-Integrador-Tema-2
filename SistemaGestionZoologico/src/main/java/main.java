@@ -1,5 +1,15 @@
+package gestionhabitat;
 
-/*public class Main {
+import interaccionvisitantes.InterfazVisitante;
+import interaccionvisitantes.TourVirtual;
+import interaccionvisitantes.Quiosco;
+import administracionrecursos.Recurso;
+import administracionrecursos.Alimento;
+import administracionrecursos.Medicina;
+import mantenimientoseguridad.Mantenimiento;
+import mantenimientoseguridad.Seguridad;
+
+public class Main {
     public static void main(String[] args) {
         // Ejemplo de uso
         HabitatAcuatico acuario = new HabitatAcuatico("Acuario");
@@ -26,6 +36,32 @@
         aguila.alimentar();
         aguila.salud();
         aguila.comportamiento();
+        // Interacción con visitantes
+        InterfazVisitante tourVirtual = new TourVirtual();
+        InterfazVisitante quiosco = new Quiosco();
+
+        tourVirtual.proporcionarInformacion();
+        tourVirtual.ofrecerTour();
+
+        quiosco.proporcionarInformacion();
+        quiosco.ofrecerTour();
+
+        // Administración de recursos
+        Recurso alimento = new Alimento("Carne", 100);
+        Recurso medicina = new Medicina("Vacuna", 50);
+
+        alimento.gestionar();
+        medicina.gestionar();
+
+        // Mantenimiento y Seguridad
+        Mantenimiento mantenimiento = new Mantenimiento();
+        Seguridad seguridad = new Seguridad();
+
+        mantenimiento.programarMantenimiento();
+        mantenimiento.realizarMantenimiento();
+
+        seguridad.monitorearAccesos();
+        seguridad.monitorearMovimientos();
     }
 }
-*/
+
