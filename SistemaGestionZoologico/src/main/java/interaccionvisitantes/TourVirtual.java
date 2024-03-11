@@ -1,6 +1,9 @@
 package interaccionvisitantes;
 
 public class TourVirtual implements InterfazVisitante {
+    public static void iniciarTour() {
+    }
+
     @Override
     public void proporcionarInformacion() {
         System.out.println("Proporcionando información sobre el zoológico...");

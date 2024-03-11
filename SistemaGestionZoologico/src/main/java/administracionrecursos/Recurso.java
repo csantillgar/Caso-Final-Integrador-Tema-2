@@ -9,6 +9,9 @@ public abstract class Recurso {
         this.cantidadDisponible = cantidadDisponible;
     }
 
+    public Recurso(String agua, String s, int i) {
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -22,4 +25,7 @@ public abstract class Recurso {
     }
 
     public abstract void gestionar();
+
+    public void administrarRecurso() {
+    }
 }

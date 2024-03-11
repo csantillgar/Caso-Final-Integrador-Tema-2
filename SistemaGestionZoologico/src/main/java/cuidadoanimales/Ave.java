@@ -19,4 +19,7 @@ public class Ave extends Animal {
     public void comportamiento() {
         System.out.println("Observando comportamiento de ave: " + getNombre());
     }
+
+    public void mostrarInformacion() {
+    }
 }

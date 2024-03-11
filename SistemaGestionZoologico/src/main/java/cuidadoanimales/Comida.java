@@ -4,7 +4,7 @@ public class Comida {
     private String nombre;
     private String tipo;
 
-    public Comida(String nombre, String tipo) {
+    public Comida(String nombre, String tipo, int i) {
         this.nombre = nombre;
         this.tipo = tipo;
     }
@@ -15,5 +15,8 @@ public class Comida {
 
     public void preparar() {
         System.out.println("Preparando comida: " + nombre);
+    }
+
+    public void registrarAlimentacion() {
     }
 }
