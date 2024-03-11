@@ -8,10 +8,12 @@ import interaccionvisitantes.Quiosco;
 import interaccionvisitantes.Exhibicion;
 import interaccionvisitantes.Ticket;
 import interaccionvisitantes.TiendaSouvenirs;
+import interaccionvisitantes.Evento;
 import administracionrecursos.Recurso;
 import administracionrecursos.Alimento;
 import administracionrecursos.Medicina;
 import administracionrecursos.Empleado;
+import administracionrecursos.Donacion;
 import interaccionvisitantes.Ventas;
 import mantenimientoseguridad.Mantenimiento;
 import mantenimientoseguridad.Seguridad;
@@ -114,6 +116,13 @@ public class Main {
         // Venta de souvenirs
         TiendaSouvenirs tienda = new TiendaSouvenirs();
         tienda.venderSouvenirs();
+
+        // Eventos y donaciones
+        Evento eventoBenefico = new Evento("Evento Benéfico", new Date(), "Recogida de fondos para la conservación de especies en peligro.");
+        eventoBenefico.mostrarInformacion();
+
+        Donacion donacion = new Donacion("Empresa XYZ", 5000);
+        donacion.registrarDonacion();
     }
 }
 */
