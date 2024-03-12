@@ -28,4 +28,7 @@ public abstract class Recurso {
 
     public void administrarRecurso() {
     }
+
+    public void administrar() {
+    }
 }

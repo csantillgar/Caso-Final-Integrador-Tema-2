@@ -9,4 +9,7 @@ public class Seguridad {
     public void monitorearMovimientos() {
         System.out.println("Monitoreando movimientos...");
     }
+
+    public void realizarSeguridad() {
+    }
 }

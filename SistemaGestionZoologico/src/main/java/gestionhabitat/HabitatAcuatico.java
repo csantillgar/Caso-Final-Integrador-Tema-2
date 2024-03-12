@@ -19,4 +19,7 @@ public class HabitatAcuatico extends Habitat {
     public void monitorear() {
         System.out.println("Monitoreando hábitat acuático: " + getNombre());
     }
+
+    public void realizarMantenimiento() {
+    }
 }

@@ -13,4 +13,9 @@ public class TourVirtual implements InterfazVisitante {
     public void ofrecerTour() {
         System.out.println("Ofreciendo tour virtual...");
     }
+
+    @Override
+    public void iniciar() {
+
+    }
 }

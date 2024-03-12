@@ -9,4 +9,7 @@ public class Alimento extends Recurso {
     public void gestionar() {
         System.out.println("Gestionando el alimento: " + getNombre());
     }
+
+    public void registrarAlimentacion() {
+    }
 }

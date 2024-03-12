@@ -5,7 +5,7 @@ public abstract class Animal {
     private String especie;
     private int edad;
 
-    public Animal(String nombre, String especie, int edad) {
+    public Animal(String nombre) {
         this.nombre = nombre;
         this.especie = especie;
         this.edad = edad;
@@ -26,4 +26,7 @@ public abstract class Animal {
     public abstract void alimentar();
     public abstract void salud();
     public abstract void comportamiento();
+
+    public void mostrarInformacion() {
+    }
 }

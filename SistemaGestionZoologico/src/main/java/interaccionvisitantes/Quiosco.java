@@ -10,4 +10,9 @@ public class Quiosco implements InterfazVisitante {
     public void ofrecerTour() {
         System.out.println("Ofreciendo información detallada y tours guiados en el quiosco...");
     }
+
+    @Override
+    public void iniciar() {
+
+    }
 }

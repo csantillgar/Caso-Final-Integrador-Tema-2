@@ -39,4 +39,7 @@ public abstract class Habitat {
     }
 
     public abstract void monitorear();
+
+    public void realizarMantenimiento() {
+    }
 }

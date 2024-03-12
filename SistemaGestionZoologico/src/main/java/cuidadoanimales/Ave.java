@@ -2,7 +2,7 @@ package cuidadoanimales;
 
 public class Ave extends Animal {
     public Ave(String nombre, String especie, int edad) {
-        super(nombre, especie, edad);
+        super(nombre);
     }
 
     @Override

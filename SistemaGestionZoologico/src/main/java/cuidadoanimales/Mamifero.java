@@ -2,7 +2,7 @@ package cuidadoanimales;
 
 public class Mamifero extends Animal {
     public Mamifero(String nombre, String especie, int edad) {
-        super(nombre, especie, edad);
+        super(nombre);
     }
 
     @Override

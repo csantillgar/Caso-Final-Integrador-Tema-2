@@ -1,9 +1,9 @@
-import administracionrecursos.*;
-import cuidadoanimales.*;
-import interaccionvisitantes.*;
-import mantenimientoseguridad.*;
-import java.util.Date;
 import java.util.Scanner;
+import cuidadoanimales.*;
+import gestionhabitat.*;
+import interaccionvisitantes.*;
+import administracionrecursos.*;
+import mantenimientoseguridad.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,7 +23,6 @@ public class Main {
         }
     }
 
-    // Método para mostrar el mensaje de bienvenida
     private static void mostrarMensajeBienvenida() {
         System.out.println("Bienvenido al Zoológico Inteligente");
         System.out.println("¿Eres visitante o trabajador?");
@@ -31,13 +30,11 @@ public class Main {
         System.out.println("2. Trabajador");
     }
 
-    // Método para seleccionar el tipo de usuario
     private static int seleccionarTipoUsuario(Scanner scanner) {
         System.out.print("Seleccione una opción: ");
         return scanner.nextInt();
     }
 
-    // Método para iniciar el modo visitante
     private static void iniciarModoVisitante(Scanner scanner) {
         boolean salir = false;
         do {
@@ -65,7 +62,6 @@ public class Main {
         } while (!salir);
     }
 
-    // Método para mostrar el menú de opciones para visitantes
     private static void mostrarMenuVisitante() {
         System.out.println("\nOpciones disponibles para visitantes:");
         System.out.println("1. Ver información sobre los animales");
@@ -75,25 +71,46 @@ public class Main {
         System.out.print("Seleccione una opción: ");
     }
 
-    // Métodos para las opciones del visitante
     private static void mostrarInformacionAnimales() {
-        System.out.println("Información sobre los animales:");
-        Ave ave = new Ave("Águila", "Ave rapaz", 5);
-        ave.mostrarInformacion();
+        System.out.println("Mostrando información sobre los animales...");
+        // Aquí puedes usar las clases relacionadas con el cuidado de los animales
+        Animal animal = new Animal("Tigre") {
+            @Override
+            public void alimentar() {
+                System.out.println("Alimentando al tigre...");
+                // Código para alimentar al tigre
+            }
+
+            @Override
+            public void salud() {
+                System.out.println("Revisando la salud del tigre...");
+                // Código para revisar la salud del tigre
+            }
+
+            @Override
+            public void comportamiento() {
+                System.out.println("Observando el comportamiento del tigre...");
+                // Código para observar el comportamiento del tigre
+            }
+        };
+
+        animal.mostrarInformacion();
     }
 
     private static void participarTourVirtual() {
-        System.out.println("Participando en el tour virtual...");
-        TourVirtual.iniciarTour();
+        System.out.println("Iniciando tour virtual...");
+        // Aquí puedes usar las clases relacionadas con la interacción de los visitantes
+        InterfazVisitante tourVirtual = new TourVirtual();
+        tourVirtual.iniciar();
     }
 
     private static void comprarSouvenirs() {
-        System.out.println("Bienvenido a la tienda de souvenirs:");
+        System.out.println("Abriendo tienda de souvenirs...");
+        // Aquí puedes usar las clases relacionadas con la interacción de los visitantes
         TiendaSouvenirs tienda = new TiendaSouvenirs();
         tienda.mostrarProductos();
     }
 
-    // Método para iniciar el modo trabajador
     private static void iniciarModoTrabajador(Scanner scanner) {
         boolean salir = false;
         do {
@@ -112,6 +129,9 @@ public class Main {
                     administrarRecursosZoo();
                     break;
                 case 4:
+                    realizarMantenimientoSeguridad();
+                    break;
+                case 5:
                     salir = true;
                     System.out.println("Saliendo del modo trabajador.");
                     break;
@@ -121,38 +141,48 @@ public class Main {
         } while (!salir);
     }
 
-    // Método para mostrar el menú de opciones para trabajadores
     private static void mostrarMenuTrabajador() {
         System.out.println("\nOpciones disponibles para trabajadores:");
         System.out.println("1. Registrar alimentación de los animales");
         System.out.println("2. Realizar mantenimiento de hábitats");
         System.out.println("3. Administrar recursos del zoológico");
-        System.out.println("4. Salir");
+        System.out.println("4. Realizar mantenimiento y seguridad");
+        System.out.println("5. Salir");
         System.out.print("Seleccione una opción: ");
     }
 
-    // Métodos para las opciones del trabajador
     private static void registrarAlimentacionAnimales() {
         System.out.println("Registrando alimentación de los animales...");
-        Comida comida = new Comida("Carne", "Alimento principal para carnívoros", 50);
-        comida.registrarAlimentacion();
+        // Aquí puedes usar las clases relacionadas con el cuidado de los animales
+        Alimento alimento = new Alimento("Carne", 100);
+        alimento.registrarAlimentacion();
     }
 
     private static void realizarMantenimientoHabitats() {
         System.out.println("Realizando mantenimiento de hábitats...");
-        Mantenimiento mantenimiento = new Mantenimiento();
-        mantenimiento.realizarMantenimiento();
+        // Aquí puedes usar las clases relacionadas con la gestión de hábitats
+        HabitatAcuatico acuario = new HabitatAcuatico("Acuario");
+        acuario.realizarMantenimiento();
     }
 
     private static void administrarRecursosZoo() {
         System.out.println("Administrar recursos del zoológico...");
-        Recurso recurso = new Recurso("Agua", "Recurso esencial para el hábitat acuático", 100) {
+        // Aquí puedes usar las clases relacionadas con la administración de recursos del zoológico
+        Recurso recurso = new Recurso("Agua", 100) {
             @Override
             public void gestionar() {
-System.out.println("Gestionando el recurso: " + getNombre());
 
             }
         };
-        recurso.administrarRecurso();
+        recurso.administrar();
+    }
+
+    private static void realizarMantenimientoSeguridad() {
+        System.out.println("Realizando mantenimiento y seguridad...");
+// Aquí puedes usar las clases relacionadas con el mantenimiento y seguridad del zoológico
+        Mantenimiento mantenimiento = new Mantenimiento();
+        mantenimiento.realizarMantenimiento();
+        Seguridad seguridad = new Seguridad();
+        seguridad.realizarSeguridad();
     }
 }
