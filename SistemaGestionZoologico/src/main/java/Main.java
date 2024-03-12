@@ -1,188 +1,72 @@
-import java.util.Scanner;
-import cuidadoanimales.*;
-import gestionhabitat.*;
-import interaccionvisitantes.*;
-import administracionrecursos.*;
-import mantenimientoseguridad.*;
+// Paquete principal
+package zoo;
 
+// Clase principal que ejecuta el main
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        mostrarMensajeBienvenida();
-        int opcion = seleccionarTipoUsuario(scanner);
+        // Crear instancia de la interfaz de usuario
+        InterfazUsuario interfaz = new InterfazUsuario();
+
+        // Mostrar índice para que el usuario elija si es trabajador o visitante
+        interfaz.mostrarIndice();
+    }
+}
+
+// Paquete para la interfaz de usuario
+package zoo.interfaz;
+
+// Clase que representa la interfaz de usuario
+public class InterfazUsuario {
+    // Método que muestra el índice para que el usuario elija si es trabajador o visitante
+    public void mostrarIndice() {
+        System.out.println("Bienvenido al Zoo Integral");
+        System.out.println("1. Ingresar como trabajador");
+        System.out.println("2. Ingresar como visitante");
+        System.out.println("3. Salir");
+
+        int opcion = Integer.parseInt(System.console().readLine());
 
         switch (opcion) {
             case 1:
-                iniciarModoVisitante(scanner);
+                // Crear instancia de la interfaz de trabajador y ejecutarla
+                InterfazTrabajador trabajador = new InterfazTrabajador();
+                trabajador.ejecutar();
                 break;
             case 2:
-                iniciarModoTrabajador(scanner);
+                // Crear instancia de la interfaz de visitante y ejecutarla
+                InterfazVisitante visitante = new InterfazVisitante();
+                visitante.ejecutar();
+                break;
+            case 3:
+                // Salir del programa
+                System.exit(0);
                 break;
             default:
-                System.out.println("Opción inválida. Por favor, seleccione 1 o 2.");
+                System.out.println("Opción no válida");
+                mostrarIndice();
+                break;
         }
     }
+}
 
-    private static void mostrarMensajeBienvenida() {
-        System.out.println("Bienvenido al Zoológico Inteligente");
-        System.out.println("¿Eres visitante o trabajador?");
-        System.out.println("1. Visitante");
-        System.out.println("2. Trabajador");
+// Paquete para la interfaz de trabajador
+package zoo.interfaz.trabajador;
+
+// Clase que representa la interfaz de trabajador
+public class InterfazTrabajador {
+    // Método que ejecuta la interfaz de trabajador
+    public void ejecutar() {
+        // Implementar funcionalidades para trabajadores
     }
+}
 
-    private static int seleccionarTipoUsuario(Scanner scanner) {
-        System.out.print("Seleccione una opción: ");
-        return scanner.nextInt();
-    }
+// Paquete para la interfaz de visitante
+package zoo.interfaz.visitante;
 
-    private static void iniciarModoVisitante(Scanner scanner) {
-        boolean salir = false;
-        do {
-            mostrarMenuVisitante();
-            int opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer del scanner
-
-            switch (opcion) {
-                case 1:
-                    mostrarInformacionAnimales();
-                    break;
-                case 2:
-                    participarTourVirtual();
-                    break;
-                case 3:
-                    comprarSouvenirs();
-                    break;
-                case 4:
-                    salir = true;
-                    System.out.println("Gracias por visitar el Zoológico Inteligente.");
-                    break;
-                default:
-                    System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-            }
-        } while (!salir);
-    }
-
-    private static void mostrarMenuVisitante() {
-        System.out.println("\nOpciones disponibles para visitantes:");
-        System.out.println("1. Ver información sobre los animales");
-        System.out.println("2. Participar en un tour virtual");
-        System.out.println("3. Comprar souvenirs");
-        System.out.println("4. Salir");
-        System.out.print("Seleccione una opción: ");
-    }
-
-    private static void mostrarInformacionAnimales() {
-        System.out.println("Mostrando información sobre los animales...");
-        // Aquí puedes usar las clases relacionadas con el cuidado de los animales
-        Animal animal = new Animal("Tigre") {
-            @Override
-            public void alimentar() {
-                System.out.println("Alimentando al tigre...");
-                // Código para alimentar al tigre
-            }
-
-            @Override
-            public void salud() {
-                System.out.println("Revisando la salud del tigre...");
-                // Código para revisar la salud del tigre
-            }
-
-            @Override
-            public void comportamiento() {
-                System.out.println("Observando el comportamiento del tigre...");
-                // Código para observar el comportamiento del tigre
-            }
-        };
-
-        animal.mostrarInformacion();
-    }
-
-    private static void participarTourVirtual() {
-        System.out.println("Iniciando tour virtual...");
-        // Aquí puedes usar las clases relacionadas con la interacción de los visitantes
-        InterfazVisitante tourVirtual = new TourVirtual();
-        tourVirtual.iniciar();
-    }
-
-    private static void comprarSouvenirs() {
-        System.out.println("Abriendo tienda de souvenirs...");
-        // Aquí puedes usar las clases relacionadas con la interacción de los visitantes
-        TiendaSouvenirs tienda = new TiendaSouvenirs();
-        tienda.mostrarProductos();
-    }
-
-    private static void iniciarModoTrabajador(Scanner scanner) {
-        boolean salir = false;
-        do {
-            mostrarMenuTrabajador();
-            int opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer del scanner
-
-            switch (opcion) {
-                case 1:
-                    registrarAlimentacionAnimales();
-                    break;
-                case 2:
-                    realizarMantenimientoHabitats();
-                    break;
-                case 3:
-                    administrarRecursosZoo();
-                    break;
-                case 4:
-                    realizarMantenimientoSeguridad();
-                    break;
-                case 5:
-                    salir = true;
-                    System.out.println("Saliendo del modo trabajador.");
-                    break;
-                default:
-                    System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-            }
-        } while (!salir);
-    }
-
-    private static void mostrarMenuTrabajador() {
-        System.out.println("\nOpciones disponibles para trabajadores:");
-        System.out.println("1. Registrar alimentación de los animales");
-        System.out.println("2. Realizar mantenimiento de hábitats");
-        System.out.println("3. Administrar recursos del zoológico");
-        System.out.println("4. Realizar mantenimiento y seguridad");
-        System.out.println("5. Salir");
-        System.out.print("Seleccione una opción: ");
-    }
-
-    private static void registrarAlimentacionAnimales() {
-        System.out.println("Registrando alimentación de los animales...");
-        // Aquí puedes usar las clases relacionadas con el cuidado de los animales
-        Alimento alimento = new Alimento("Carne", 100);
-        alimento.registrarAlimentacion();
-    }
-
-    private static void realizarMantenimientoHabitats() {
-        System.out.println("Realizando mantenimiento de hábitats...");
-        // Aquí puedes usar las clases relacionadas con la gestión de hábitats
-        HabitatAcuatico acuario = new HabitatAcuatico("Acuario");
-        acuario.realizarMantenimiento();
-    }
-
-    private static void administrarRecursosZoo() {
-        System.out.println("Administrar recursos del zoológico...");
-        // Aquí puedes usar las clases relacionadas con la administración de recursos del zoológico
-        Recurso recurso = new Recurso("Agua", 100) {
-            @Override
-            public void gestionar() {
-
-            }
-        };
-        recurso.administrar();
-    }
-
-    private static void realizarMantenimientoSeguridad() {
-        System.out.println("Realizando mantenimiento y seguridad...");
-// Aquí puedes usar las clases relacionadas con el mantenimiento y seguridad del zoológico
-        Mantenimiento mantenimiento = new Mantenimiento();
-        mantenimiento.realizarMantenimiento();
-        Seguridad seguridad = new Seguridad();
-        seguridad.realizarSeguridad();
+// Clase que representa la interfaz de visitante
+public class InterfazVisitante {
+    // Método que ejecuta la interfaz de visitante
+    public void ejecutar() {
+        // Implementar funcionalidades para visitantes
     }
 }
