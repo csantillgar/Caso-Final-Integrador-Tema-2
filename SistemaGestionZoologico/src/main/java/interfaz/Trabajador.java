@@ -1,7 +1,8 @@
 // Paquete para la interfaz de trabajador
 package zoo.interfaz.trabajador;
-
-// Clase que representa la interfaz de trabajador
+import java.animales.Animal;
+import java.habitats.Habitat;
+import java.suministros.Suministro;
 public class InterfazTrabajador {
     // Método que ejecuta la interfaz de trabajador
     public void ejecutar() {
