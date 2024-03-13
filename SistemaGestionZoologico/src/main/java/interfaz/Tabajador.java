@@ -1,6 +1,6 @@
 package interfaz;
 
-public abstract class Trabajador {
+abstract class Trabajador {
     private String nombre;
     private String apellido;
     private String cargo;

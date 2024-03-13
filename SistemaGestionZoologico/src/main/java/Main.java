@@ -1,6 +1,3 @@
-// Paquete principal
-package zoo;
-
 // Clase principal que ejecuta el main
 public class Main {
     public static void main(String[] args) {
@@ -13,10 +10,10 @@ public class Main {
 }
 
 // Paquete para la interfaz de usuario
-package zoo.interfaz;
+
 
 // Clase que representa la interfaz de usuario
-public class InterfazUsuario {
+class InterfazUsuario {
     // Método que muestra el índice para que el usuario elija si es trabajador o visitante
     public void mostrarIndice() {
         System.out.println("Bienvenido al Zoo Integral");
@@ -50,10 +47,9 @@ public class InterfazUsuario {
 }
 
 // Paquete para la interfaz de trabajador
-package zoo.interfaz.trabajador;
 
 // Clase que representa la interfaz de trabajador
-public class InterfazTrabajador {
+class InterfazTrabajador {
     // Método que ejecuta la interfaz de trabajador
     public void ejecutar() {
         // Implementar funcionalidades para trabajadores
@@ -61,10 +57,10 @@ public class InterfazTrabajador {
 }
 
 // Paquete para la interfaz de visitante
-package zoo.interfaz.visitante;
+
 
 // Clase que representa la interfaz de visitante
-public class InterfazVisitante {
+class InterfazVisitante {
     // Método que ejecuta la interfaz de visitante
     public void ejecutar() {
         // Implementar funcionalidades para visitantes

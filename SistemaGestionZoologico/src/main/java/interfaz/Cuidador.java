@@ -1,12 +1,18 @@
 package interfaz;
 
-public class Cuidador implements Trabajador {
+import animales.Animal;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cuidador extends Trabajador {
     private String nombre;
     private String apellido;
     private String especialidad;
     private List<Animal> animalesACargo;
 
     public Cuidador(String nombre, String apellido, String especialidad) {
+        super(nombre, apellido, "Cuidador", 0.0);
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;

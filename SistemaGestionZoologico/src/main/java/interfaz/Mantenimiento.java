@@ -1,11 +1,12 @@
 package interfaz;
 
-public class Mantenimiento implements Trabajador {
+public class Mantenimiento extends Trabajador {
     private String nombre;
     private String apellido;
     private String especialidad;
 
     public Mantenimiento(String nombre, String apellido, String especialidad) {
+        super(nombre, apellido, "Mantenimiento", 0.0);
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;

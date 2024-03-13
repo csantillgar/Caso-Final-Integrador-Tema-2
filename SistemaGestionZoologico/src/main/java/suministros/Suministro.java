@@ -2,7 +2,7 @@ package suministros;
 
 public abstract class Suministro {
     private String nombre;
-    private int cantidad;
+    int cantidad;
 
     public Suministro(String nombre, int cantidad) {
         this.nombre = nombre;

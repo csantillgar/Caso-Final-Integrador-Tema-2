@@ -1,11 +1,12 @@
 package interfaz;
 
-public class Administrador implements Trabajador {
+public class Administrador extends Trabajador {
     private String nombre;
     private String apellido;
     private String area;
 
     public Administrador(String nombre, String apellido, String area) {
+        super(nombre, apellido, "Administrador", 0.0);
         this.nombre = nombre;
         this.apellido = apellido;
         this.area = area;
