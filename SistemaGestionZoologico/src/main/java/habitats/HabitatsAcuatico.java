@@ -1,8 +1,8 @@
 package habitats;
-public class HabitatAcuatico extends Habitat {
+public class HabitatsAcuatico extends Habitats {
     private double profundidad;
 
-    public HabitatAcuatico(String identificador, double temperatura, double humedad, double profundidad) {
+    public HabitatsAcuatico(String identificador, double temperatura, double humedad, double profundidad) {
         super(identificador, temperatura, humedad);
         this.profundidad = profundidad;
     }

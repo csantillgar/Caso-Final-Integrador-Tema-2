@@ -1,16 +1,19 @@
 package habitats;
 
-public abstract class Habitat {
+public abstract class Habitats {
     private String identificador;
     private double temperatura;
     private double humedad;
     private double limpieza;
 
-    public Habitat(String identificador, double temperatura, double humedad, double limpieza) {
+    public Habitats(String identificador, double temperatura, double humedad, double limpieza) {
         this.identificador = identificador;
         this.temperatura = temperatura;
         this.humedad = humedad;
         this.limpieza = limpieza;
+    }
+
+    public Habitats(String identificador, double temperatura, double humedad) {
     }
 
     public String getIdentificador() {

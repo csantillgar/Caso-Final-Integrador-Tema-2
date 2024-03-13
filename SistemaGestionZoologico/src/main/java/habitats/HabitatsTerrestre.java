@@ -1,6 +1,6 @@
 package habitats;
 
-public abstract class Habitat {
+abstract class Habitat {
     private String identificador;
     private double temperatura;
     private double humedad;
@@ -49,10 +49,10 @@ public abstract class Habitat {
 }
 
 
-public class HabitatTerrestre extends Habitat {
+public class HabitatsTerrestre extends Habitats {
     private boolean tieneVegetacion;
 
-    public HabitatTerrestre(String identificador, double temperatura, double humedad, boolean tieneVegetacion) {
+    public HabitatsTerrestre(String identificador, double temperatura, double humedad, boolean tieneVegetacion) {
         super(identificador, temperatura, humedad);
         this.tieneVegetacion = tieneVegetacion;
     }

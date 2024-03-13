@@ -1,10 +1,10 @@
 package animales;
 
-public class Animal {
+public abstract class Animal {
     private String nombre;
     private int edad;
     private double peso;
-    private double salud;
+    public double salud;
 
     public Animal(String nombre, int edad, double peso, double salud) {
         this.nombre = nombre;
@@ -59,4 +59,6 @@ public class Animal {
         // Lógica para que el animal juegue
         this.salud -= 5;
     }
+
+    public abstract void emitirSonido();
 }
