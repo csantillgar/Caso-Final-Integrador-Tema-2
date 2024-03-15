@@ -1,33 +1,58 @@
-package habitats;
-public class HabitatsAcuatico extends Habitats {
-    private double profundidad;
+package habitats; // Asegúrate de definir el paquete correcto si es necesario
 
-    public HabitatsAcuatico(String identificador, double temperatura, double humedad, double profundidad) {
-        super(identificador, temperatura, humedad);
-        this.profundidad = profundidad;
+public class HabitatsAcuatico {
+    private String nombre;
+    private int capacidad;
+    private int temperatura;
+    private int nivelAgua;
+    private String descripcion;
+
+    public HabitatsAcuatico(String nombre, int capacidad, int temperatura, int nivelAgua, String descripcion) {
+        this.nombre = nombre;
+        this.capacidad = capacidad;
+        this.temperatura = temperatura;
+        this.nivelAgua = nivelAgua;
+        this.descripcion = descripcion;
     }
 
-    public double getProfundidad() {
-        return profundidad;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setProfundidad(double profundidad) {
-        this.profundidad = profundidad;
+    public int getCapacidad() {
+        return capacidad;
     }
 
-    @Override
-    public void analizarCondiciones() {
-        if (this.getTemperatura() < 10 || this.getTemperatura() > 30) {
-            this.setLimpieza(this.getLimpieza() - 10);
-        }
-        if (this.getHumedad() < 60 || this.getHumedad() > 90) {
-            this.setLimpieza(this.getLimpieza() - 10);
-        }
-        if (this.getProfundidad() < 1 || this.getProfundidad() > 10) {
-            this.setLimpieza(this.getLimpieza() - 10);
-        }
-        if (this.getLimpieza() < 0) {
-            this.setLimpieza(0);
-        }
+    public int getTemperatura() {
+        return temperatura;
+    }
+
+    public int getNivelAgua() {
+        return nivelAgua;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public void setTemperatura(int temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public void setNivelAgua(int nivelAgua) {
+        this.nivelAgua = nivelAgua;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
+

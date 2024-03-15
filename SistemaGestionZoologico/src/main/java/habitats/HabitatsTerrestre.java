@@ -1,60 +1,13 @@
 package habitats;
 
-abstract class Habitat {
-    private String identificador;
-    private double temperatura;
-    private double humedad;
-    private double limpieza;
-
-    public Habitat(String identificador, double temperatura, double humedad) {
-        this.identificador = identificador;
-        this.temperatura = temperatura;
-        this.humedad = humedad;
-        this.limpieza = 100.0; // limpieza inicial en 100%
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
-
-    public double getTemperatura() {
-        return temperatura;
-    }
-
-    public void setTemperatura(double temperatura) {
-        this.temperatura = temperatura;
-    }
-
-    public double getHumedad() {
-        return humedad;
-    }
-
-    public void setHumedad(double humedad) {
-        this.humedad = humedad;
-    }
-
-    public double getLimpieza() {
-        return limpieza;
-    }
-
-    public void setLimpieza(double limpieza) {
-        this.limpieza = limpieza;
-    }
-
-    public abstract void analizarCondiciones();
-}
-
-
 public class HabitatsTerrestre extends Habitats {
     private boolean tieneVegetacion;
+    private String nombre;
 
-    public HabitatsTerrestre(String identificador, double temperatura, double humedad, boolean tieneVegetacion) {
+    public HabitatsTerrestre(String identificador, double temperatura, double humedad, boolean tieneVegetacion, String nombre) {
         super(identificador, temperatura, humedad);
         this.tieneVegetacion = tieneVegetacion;
+        this.nombre = nombre;
     }
 
     public boolean isTieneVegetacion() {
@@ -63,6 +16,14 @@ public class HabitatsTerrestre extends Habitats {
 
     public void setTieneVegetacion(boolean tieneVegetacion) {
         this.tieneVegetacion = tieneVegetacion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override

@@ -5,6 +5,7 @@ public abstract class Animal {
     private int edad;
     private double peso;
     public double salud;
+    private double cantidadAlimento;
 
     public Animal(String nombre, int edad, double peso, double salud) {
         this.nombre = nombre;
@@ -13,6 +14,11 @@ public abstract class Animal {
         this.salud = salud;
     }
 
+    public void actualizarCantidadAlimento(double cantidadAlimento) {
+        // Implementa la lógica según sea necesario para actualizar la cantidad de alimento del animal
+        // Por ejemplo, podrías simplemente asignar la nueva cantidad directamente
+        this.cantidadAlimento = cantidadAlimento;
+    }
     public String getNombre() {
         return nombre;
     }
