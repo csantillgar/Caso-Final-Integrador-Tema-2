@@ -1,6 +1,6 @@
 package habitats; // Asegúrate de definir el paquete correcto si es necesario
 
-public class HabitatsAcuatico {
+public class HabitatsAcuatico extends Habitats{
     private String nombre;
     private int capacidad;
     private int temperatura;
@@ -16,8 +16,9 @@ public class HabitatsAcuatico {
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
+
 
     public int getCapacidad() {
         return capacidad;
@@ -25,6 +26,14 @@ public class HabitatsAcuatico {
 
     public int getTemperatura() {
         return temperatura;
+    }
+
+    @Override
+    public void analizarCondiciones() {
+        if (this.getTemperatura() < 10 || this.getTemperatura() > 30) {
+            // Tomar ciertas acciones si la temperatura está fuera del rango deseado
+        }
+
     }
 
     public int getNivelAgua() {
@@ -54,5 +63,21 @@ public class HabitatsAcuatico {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    public void realizarLimpieza() {
+        // Implementar lógica para limpiar el hábitat acuático
+        System.out.println("Realizando limpieza en el hábitat acuático: " + getNombre());
+    }
+    public void realizarReparaciones() {
+        // Implementación para realizar reparaciones en el hábitat acuático
+        System.out.println("Realizando reparaciones en el hábitat acuático: " + getNombre());
+    }
+
+    public void realizarRenovaciones() {
+        // Implementación para realizar renovaciones en el hábitat acuático
+        System.out.println("Realizando renovaciones en el hábitat acuático: " + getNombre());
+    }
+
+
+
 }
 

@@ -1,10 +1,21 @@
 package interfaz;
+import java.util.List;
+import habitats.Habitats;
 
 abstract class Trabajador {
     private String nombre;
     private String apellido;
     private String cargo;
     private double salario;
+
+    public class InterfazTrabajador {
+        private List<Habitats> habitats; // Atributo para almacenar la lista de hábitats
+
+        public InterfazTrabajador(List<Habitats> habitats) {
+            this.habitats = habitats;
+        }
+
+    }
 
     public Trabajador(String nombre, String apellido, String cargo, double salario) {
         this.nombre = nombre;

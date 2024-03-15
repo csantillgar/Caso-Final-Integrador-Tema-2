@@ -16,7 +16,7 @@ import interfaz.visitantes.Espectador;
 import interfaz.visitantes.Visitante;
 
 public class Main {
-    static List<Animal> listaAnimales;
+    static List<Animal> listaAnimales = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,6 +25,36 @@ public class Main {
         Animal tigre = new Mamifero("Tigre", 4, 180, 95, "Rayado", 4);
         Animal loro = new Ave("Loro", 2, 1, 90, "Verde");
         Animal serpiente = new Reptil("Serpiente", 3, 5, 85, true);
+
+        // Asignar valores a la lista de animales
+        listaAnimales = new ArrayList<>();
+        listaAnimales.add(leon);
+        listaAnimales.add(tigre);
+        listaAnimales.add(loro);
+        listaAnimales.add(serpiente);
+
+        //Crear instancias de hábitats
+        List<Habitats> listaHabitats = new ArrayList<>();
+        HabitatsAcuatico habitatAcuatico1 = new HabitatsAcuatico("Estanque", 20, 80, 5, "Estanque principal");
+        HabitatsAcuatico habitatAcuatico2 = new HabitatsAcuatico("Lago", 22, 75, 8, "Lago central");
+
+        HabitatsTerrestre habitatTerrestre1 = new HabitatsTerrestre("Savannah", 25, 50, true, "Savannah principal");
+        HabitatsTerrestre habitatTerrestre2 = new HabitatsTerrestre("Bosque", 20, 60, true, "Bosque central");
+
+        listaHabitats.add(habitatAcuatico1);
+        listaHabitats.add(habitatAcuatico2);
+        listaHabitats.add(habitatTerrestre1);
+        listaHabitats.add(habitatTerrestre2);
+        InterfazTrabajador trabajador = new InterfazTrabajador(listaAnimales, listaHabitats);
+
+        // Crear instancias de suministros
+        Suministro agua = new Agua(1000);
+        Suministro comida = new Comida(500);
+
+
+
+        InterfazUsuario interfaz = new InterfazUsuario();
+        interfaz.mostrarIndice(scanner, listaHabitats);
 
         // Crear instancias de trabajadores
         Administrador administrador = new Administrador("Juan", "Pérez", "Administración");
@@ -35,35 +65,15 @@ public class Main {
         Visitante comprador = new Comprador("Ana", "Martínez", 25);
         Visitante espectador = new Espectador("Luis", "López", 30, new String[]{"León", "Tigre"});
 
-        // Crear instancias de hábitats
-        HabitatsAcuatico habitatAcuatico1 = new HabitatsAcuatico("Estanque", 20, 80, 5, "Estanque principal");
-        HabitatsAcuatico habitatAcuatico2 = new HabitatsAcuatico("Lago", 22, 75, 8, "Lago central");
-
-        HabitatsTerrestre habitatTerrestre1 = new HabitatsTerrestre("Savannah", 25, 50, true, "Savannah principal");
-        HabitatsTerrestre habitatTerrestre2 = new HabitatsTerrestre("Bosque", 20, 60, true, "Bosque central");
-
-        // Crear instancias de suministros
-        Suministro agua = new Agua(1000);
-        Suministro comida = new Comida(500);
-
-        // Asignar valores a la lista de animales
-        listaAnimales = new ArrayList<>();
-        listaAnimales.add(leon);
-        listaAnimales.add(tigre);
-        listaAnimales.add(loro);
-        listaAnimales.add(serpiente);
-
-        InterfazUsuario interfaz = new InterfazUsuario();
 
         // Mostrar índice para que el usuario elija si es trabajador o visitante
-        interfaz.mostrarIndice(scanner);
         scanner.close();
     }
 }
 
 class InterfazUsuario {
     // Método que muestra el índice para que el usuario elija si es trabajador o visitante
-    public void mostrarIndice(Scanner scanner) {
+    public void mostrarIndice(Scanner scanner, List<Habitats> listaHabitats) {
         System.out.println("Bienvenido al Zoo Integral");
         System.out.println("1. Ingresar como trabajador");
         System.out.println("2. Ingresar como visitante");
@@ -75,7 +85,7 @@ class InterfazUsuario {
         switch (opcion) {
             case 1:
                 // Crear instancia de la interfaz de trabajador y ejecutarla
-                InterfazTrabajador trabajador = new InterfazTrabajador(Main.listaAnimales);
+                InterfazTrabajador trabajador = new InterfazTrabajador(Main.listaAnimales,listaHabitats);
                 trabajador.ejecutar(scanner);
                 break;
             case 2:
@@ -89,7 +99,6 @@ class InterfazUsuario {
                 break;
             default:
                 System.out.println("Opción no válida");
-                mostrarIndice(scanner);
                 break;
         }
     }
@@ -133,9 +142,13 @@ class InterfazTrabajador {
     private String cargo = "Cuidador";
     private double salario = 1000.0;
     private List<Animal> listaAnimales;
-    public InterfazTrabajador(List<Animal> listaAnimales) {
+    private List<Habitats> listaHabitats;
+
+    public InterfazTrabajador(List<Animal> listaAnimales, List<Habitats> listaHabitats) {
         this.listaAnimales = listaAnimales;
+        this.listaHabitats = listaHabitats;
     }
+
 
 
     public void ejecutar(Scanner scanner) {
@@ -154,15 +167,12 @@ class InterfazTrabajador {
         // y permitirle acceder a funcionalidades específicas del trabajador
 
         // Ejemplo de funcionalidad: mostrar opciones disponibles para el trabajador
-        mostrarOpciones();
+        mostrarOpciones(scanner);
 
-    }
-
-    private void mostrarOpciones() {
     }
 
     // Método para mostrar opciones disponibles para el trabajador
-    public void mostrarOpciones(Scanner scanner) {
+    private void mostrarOpciones(Scanner scanner) {
         boolean salir = false;
 
         while (!salir) {
@@ -183,7 +193,7 @@ class InterfazTrabajador {
                     registrarAlimentacion(listaAnimales, scanner);
                     break;
                 case 2:
-                    realizarMantenimiento(habitat, scanner);
+                    realizarMantenimiento(listaHabitats, scanner);
                     break;
                 case 3:
                     mostrarInformacionPersonal();
@@ -202,10 +212,8 @@ class InterfazTrabajador {
                     break;
             }
         }
-
-        scanner.close();
     }
-    
+
 
     // Método para registrar la alimentación de animales
     private void registrarAlimentacion(List<Animal> listaAnimales, Scanner scanner) {
@@ -250,11 +258,8 @@ class InterfazTrabajador {
         // Mostrar la lista de hábitats disponibles
         System.out.println("Lista de hábitats:");
         for (int i = 0; i < habitats.size(); i++) {
-            System.out.println("Nombre del hábitat acuático 1: " + habitatAcuatico1.getNombre());
-            System.out.println("Nombre del hábitat acuático 2: " + habitatAcuatico2.getNombre());
-            System.out.println("Nombre del hábitat terrestre 1: " + habitatTerrestre1.getNombre());
-            System.out.println("Nombre del hábitat terrestre 2: " + habitatTerrestre2.getNombre());
-
+            Habitats habitat = habitats.get(i);
+            System.out.println((i + 1) + ". " + habitat.getNombre());
         }
 
         // Solicitar al usuario que elija un hábitat para realizar mantenimiento

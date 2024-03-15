@@ -16,6 +16,21 @@ public abstract class Habitats {
     public Habitats(String identificador, double temperatura, double humedad) {
     }
 
+    protected Habitats() {
+    }
+    public void realizarLimpieza() {
+        // Implementación predeterminada del método de limpieza
+        System.out.println("Realizando limpieza en el hábitat...");
+    }
+    public void realizarReparaciones() {
+
+        System.out.println("Realizando reparaciones en el hábitat...");
+    }
+    public void realizarRenovaciones() {
+
+        System.out.println("Realizando renovaciones en el hábitat...");
+    }
+
     public String getIdentificador() {
         return identificador;
     }
@@ -24,8 +39,8 @@ public abstract class Habitats {
         this.identificador = identificador;
     }
 
-    public double getTemperatura() {
-        return temperatura;
+    public int getTemperatura() {
+        return (int) temperatura;
     }
 
     public void setTemperatura(double temperatura) {
@@ -49,4 +64,8 @@ public abstract class Habitats {
     }
 
     public abstract void analizarCondiciones();
+
+    public String getNombre() {
+        return String.valueOf(0);
+    }
 }
