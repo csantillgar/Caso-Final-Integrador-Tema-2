@@ -67,4 +67,26 @@ public abstract class Animal {
     }
 
     public abstract void emitirSonido();
+    public abstract String getTipo();
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", peso=" + peso +
+                ", salud=" + salud +
+                ", cantidadAlimento=" + cantidadAlimento +
+                '}';
+
+}
+
+    public abstract String getColor();
+
+    public abstract double getEnvergadura();
+
+    public abstract double getLongitud();
+
+    public abstract boolean esVenenoso();
+
+    public abstract int getNumPatas();
 }

@@ -1,19 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import animales.*;
 import habitats.*;
 import interfaz.*;
 import interfaz.visitantes.*;
 import suministros.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Scanner;
-import interfaz.Administrador;
-import interfaz.Cuidador;
-import interfaz.Mantenimiento;
-import interfaz.visitantes.Comprador;
-import interfaz.visitantes.Espectador;
-import interfaz.visitantes.Visitante;
 
 public class Main {
     static List<Animal> listaAnimales = new ArrayList<>();
@@ -23,8 +17,8 @@ public class Main {
         // Crear instancias de animales
         Animal leon = new Mamifero("León", 5, 150, 100, "Dorado", 4);
         Animal tigre = new Mamifero("Tigre", 4, 180, 95, "Rayado", 4);
-        Animal loro = new Ave("Loro", 2, 1, 90, "Verde");
-        Animal serpiente = new Reptil("Serpiente", 3, 5, 85, true);
+        Animal loro = new Ave("Loro", 2, 1.5, 90.0, "Verde","Azul",0.3, 20.0);
+        Animal serpiente = new Reptil("Serpiente", 3, 5, 85, true, 150.0);
 
         // Asignar valores a la lista de animales
         listaAnimales = new ArrayList<>();
@@ -90,7 +84,7 @@ class InterfazUsuario {
                 break;
             case 2:
                 // Crear instancia de la interfaz de visitante y ejecutarla
-                InterfazVisitante visitante = new InterfazVisitante();
+                InterfazVisitante visitante = new InterfazVisitante(listaHabitats);
                 visitante.ejecutar();
                 break;
             case 3:
@@ -325,7 +319,16 @@ class InterfazTrabajador {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Clase que representa la interfaz de visitante
 class InterfazVisitante {
-    // Método que ejecuta la interfaz de visitante
+    private int cantidadEntradasVendidas;
+    private List<Habitats> listaHabitats;
+
+    public InterfazVisitante(List<Habitats>listaHabitats) {
+        this.listaHabitats = listaHabitats;
+
+    }
+
+
+
     public void ejecutar() {
         Scanner scanner = new Scanner(System.in);
         // Implementar funcionalidades para visitantes
@@ -343,13 +346,13 @@ class InterfazVisitante {
 
             switch (opcion) {
                 case 1:
-                    comprarEntrada();
+                    comprarEntrada(scanner);
                     break;
                 case 2:
                     verInformacionAnimales();
                     break;
                 case 3:
-                    realizarTourVirtual();
+                    realizarTourVirtual(scanner,listaHabitats);
                     break;
                 case 4:
                     salir = true;
@@ -361,19 +364,95 @@ class InterfazVisitante {
     }
 }
     // Método para comprar la entrada
-    private void comprarEntrada() {
+    private void comprarEntrada(Scanner scanner) {
         System.out.println("Comprando entrada...");
-        // Aquí puedes implementar la lógica para comprar la entrada
+        System.out.print("Ingrese la cantidad de entradas que desea comprar: ");
+        int cantidad = scanner.nextInt();
+        scanner.nextLine();
+
+        double precioPorEntrada = 10.0; // Precio por entrada
+        double costoTotal = cantidad * precioPorEntrada; // Costo total sin descuentos
+
+        // Ejemplo de aplicación de descuento del 10% para compras de más de 5 entradas
+        if (cantidad > 5) {
+            costoTotal *= 0.9; // Aplicar descuento del 10%
+        }
+
+        // Puedes agregar lógica adicional aquí, como calcular el costo total,
+        // descontar el número de entradas disponibles, etc.
+
+        // Simplemente incrementamos el contador de entradas vendidas por ahora
+        System.out.println("El costo total de las entradas es: " + costoTotal + "€");
+        System.out.println("¡Entradas compradas con éxito!");
+
     }
     // Método para ver información de los animales
     private void verInformacionAnimales() {
         System.out.println("Viendo información de los animales...");
-        // Aquí puedes implementar la lógica para ver la información de los animales
+
+        // Verificar si hay animales en la lista
+        if (Main.listaAnimales.isEmpty()) {
+            System.out.println("No hay animales registrados en el zoo.");
+        } else {
+            // Iterar sobre la lista de animales y mostrar la información de cada uno
+            for (Animal animal : Main.listaAnimales) {
+                System.out.println("Nombre: " + animal.getNombre());
+                System.out.println("Tipo: " + animal.getTipo());
+                System.out.println("Edad: " + animal.getEdad() + " años");
+                System.out.println("Peso: " + animal.getPeso() + " kg");
+
+                // Si es un mamífero, mostrar información adicional
+                if (animal instanceof Mamifero) {
+                    Mamifero mamifero = (Mamifero) animal;
+                    System.out.println("Color: " + mamifero.getColor());
+                    System.out.println("Número de patas: " + mamifero.getNumPatas());
+                }
+
+                // Si es un ave, mostrar información adicional
+                if (animal instanceof Ave) {
+                    Ave ave = (Ave) animal;
+                    System.out.println("Color: " + ave.getColor());
+                    System.out.println("Envergadura: " + ave.getEnvergadura() + " cm");
+                }
+
+                // Si es un reptil, mostrar información adicional
+                if (animal instanceof Reptil) {
+                    Reptil reptil = (Reptil) animal;
+                    System.out.println("Longitud: " + reptil.getLongitud() + " cm");
+                    System.out.println("Es venenoso: " + (reptil.esVenenoso() ? "Sí" : "No"));
+                }
+
+                System.out.println(); // Separador entre animales
+            }
+        }
     }
-    private void realizarTourVirtual() {
+
+
+    private void realizarTourVirtual(Scanner scanner, List<Habitats> listaHabitats) {
         System.out.println("Realizando tour virtual...");
-        // Aquí puedes implementar la lógica para realizar un tour virtual
+        System.out.println("¿Qué animales te gustan más? (Escribe los nombres separados por comas):");
+        String animalesPreferidosInput = scanner.nextLine();
+        String[] animalesPreferidos = animalesPreferidosInput.split(",");
+
+        List<String> habitatsRecomendados = recomendarHabitats(animalesPreferidos, listaHabitats);
+
+        System.out.println("¡Te recomendamos visitar los siguientes hábitats:");
+        for (String habitat : habitatsRecomendados) {
+            System.out.println("- " + habitat);
+        }
     }
 
+    private List<String> recomendarHabitats(String[] animalesPreferidos, List<Habitats> listaHabitats) {
+        List<String> habitatsRecomendados = new ArrayList<>();
 
+        for (String animal : animalesPreferidos) {
+            for (Habitats habitat : listaHabitats) {
+                if (habitat.contieneAnimal(animal)) {
+                    habitatsRecomendados.add(habitat.getNombre());
+                }
+            }
+        }
+        System.out.println("Hábitats recomendados: " + habitatsRecomendados);
+        return habitatsRecomendados;
+    }
 }
